@@ -26,3 +26,26 @@ end
 game:GetService("UserInputService").InputBegan:Connect(onInputBegan)
 game:GetService("UserInputService").InputEnded:Connect(onInputEnded)
 
+
+local function onInputBegan(input)
+	if input.UserInputType == Enum.UserInputType.Keyboard then
+		if input.KeyCode == Enum.KeyCode.LeftShift then
+			humanoid.WalkSpeed = 32
+		elseif input.KeyCode == Enum.KeyCode.LeftControl then
+			humanoid:ChangeState(Enum.HumanoidStateType.Seated)
+		end
+	end
+end
+
+local function onInputEnded(input)
+	if input.UserInputType == Enum.UserInputType.Keyboard then
+		if input.KeyCode == Enum.KeyCode.LeftShift then
+			humanoid.WalkSpeed = 16
+		elseif input.KeyCode == Enum.KeyCode.LeftControl then
+			humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+		end
+	end
+end
+
+game:GetService("UserInputService").InputBegan:Connect(onInputBegan)
+game:GetService("UserInputService").InputEnded:Connect(onInputEnded)
